@@ -1,2 +1,5 @@
 # myWebDev
-html css js basics
+notes for Web Development
+
+- Mobile Web Specialist
+- html css js basic boilerplate
