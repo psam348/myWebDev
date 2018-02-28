@@ -269,8 +269,3 @@
 ### Git
 
 ### GitHub
-
----
-`You're ready to start developing with Google Maps JavaScript API
-YOUR API KEY
-AIzaSyCYtXRSTrlGKXrODiNo4_AiPiahoQn1GUc`
