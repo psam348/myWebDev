@@ -1,6 +1,24 @@
 # Google Mobile WebDev
-## Responsive Web Design
+see [Udacity](https://www.udacity.com/course/mobile-web-specialist-nanodegree--nd024) - [Google Web fundamentals](https://developers.google.com/web/fundamentals/)
 
+
+### Table of Contents
+
+1. [Responsive Web Design](#responsive-web-design)
+2. [Responsive Images](#responsive-images)
+3. [Accessibility](#accessibility)
+4. [Offline First](#offline-first)
+5. [ES 6](#es-6)
+6. 
+7. 
+8. 
+9. 
+10. 
+11. 
+
+[Table of contents](#table-of-contents)
+## Responsive Web Design
+*Responsive web design responds to the needs of the users and the devices they're using. The layout changes based on the size and capabilities of the device. For example, on a phone users would see content shown in a single column view; a tablet might show the same content in two columns.*
 ### Pixels
 - Screen Resolution / Hardware Pixel
 - CSS pixel - Viewport
@@ -58,6 +76,7 @@
 - adjust margin
 - change font-size
 
+[Table of contents](#table-of-contents)
 ---
 ## Responsive Images
 ### Goal
@@ -208,6 +227,9 @@
     - empty for images used as decoration
     - set on every images
 - `<img src="kittens.jpg" alt="Two grey tabby kittens">`
+
+[Table of contents](#table-of-contents)
+
 ---
 ## Accessibility
 [WCAG](https://www.w3.org/TR/WCAG20/), [Checklist](https://webaim.org/standards/wcag/checklist)
@@ -239,12 +261,113 @@
     - with '0' it enters the order flow
         - `<div tabindex="0" > Focus me! </div>`
     - with '-1' make it accessible via javascript (with `focus()`method) but no part of the order flow
+        - `<div id ="modal" tabindex="-1" > Focus me! </div>`
         - `document.querySelector('#modal').focus()`
+- use Skip Links to go directly to main content
+    - in html
+        - `<body><a href="#maincontent" class="skip-link">Skip to main content</a> ...`
+        - `<main id="maincontent" tabindex="-1"> <h1>Heading</h1>`
+    - in css
+        - `.skip-link {position: absolute; top:-100px; z-index:100;}`
+        - `.skip-link:focus {top:0;}`
+    - [link to techniques](https://webaim.org/techniques/skipnav/)
+- use ARIA for complex components
+    - [WAI-ARIA](https://www.w3.org/TR/wai-aria-practices-1.1/)
+
 
 ### Semantics Basics
+- assistive Technology
+    - screen reader, braille display, magnification, eye tracking, sip and puff, switch access, voice control
+    - need to be programmaticaly implemented
+- Affordances
+    - buttons, scroll bars
+    - graphic design gives clue to meaning
+- Semantics
+    - use semantics to give an interface for users of assistive technology
+    - Role, Name/Label, State, Value
+- Accessibility tree
+![ATree](Google_dev/ATree.png)
+![DomTree](Google_dev/DomTree.png)
+![A11yTree](Google_dev/A11yTree.png)
+- Semantics in native HTML 
+    - implicit if use correct tags
+- non-text content [wcag1.1.1](https://webaim.org/standards/wcag/checklist#g1.1)
+    - All images, form image buttons, and image map hot spots have appropriate, equivalent alternative text.
+    - Images that do not convey content, are decorative, or contain content that is already conveyed in text are given null alt text (alt="") or implemented as CSS backgrounds. All linked images have descriptive alternative text.
+    - Equivalent alternatives to complex images are provided in context or on a separate (linked and/or referenced via longdesc) page.
+    - Form buttons have a descriptive value.
+    - Form inputs have associated text labels.
+    - Embedded multimedia is identified via accessible text.
+    - Frames are appropriately titled.
+- A `<label>` can be associated with a control either by placing the control element inside the `<label>` element, or by using the for attribute. 
+    - `<label>Click me <input type="text"></label>`
+    - 'for' attribute
+        - `<label for="username">Click me</label>`
+        - `<input type="text" id="username">`
+- **Verify with Chrome devtools audit accessibility**
+- provide explicit `alt` text for images
+    - *if all images are 'broken' can we still understand the page content?*
+- use empty `alt` for images that are redundant like in search button
+
 ### Navigation Content
+![Navigation](Google_dev/navigation.png)
+- Navigation by headings
+    - Beyond providing an overall document structure, individual sections of content are designated using headings, where appropriate.
+    - js snippet to use in console
+        - `for (var i = 0, headings = $$('h1,h2,h3,h4,h5,h6');
+            i < headings.length; i++) {
+                console.log(headings[i].tagName + " " +  
+                headings[i].textContent.trim(),
+                headings[i]);
+            }`
+    - WebAIM checklist items:
+        - [1.3.2](http://webaim.org/standards/wcag/checklist#sc1.3.2)
+        , [2.4.10](http://webaim.org/standards/wcag/checklist#sc2.4.10)
+        , [1.3.1](http://webaim.org/standards/wcag/checklist#sc1.3.1)
+        , [2.4.1](http://webaim.org/standards/wcag/checklist#sc2.4.1)
+        , [2.4.6](http://webaim.org/standards/wcag/checklist#sc2.4.6)
+- Navigation by links, Form controls
+    - `accesskey` Attribute
+        - `<input type="text" id="name" accesskey="n">`
+- link Text
+    - [2.4.9](http://webaim.org/standards/wcag/checklist#sc2.4.9)
+    - link anti-patterns
+        - avoid false link like in span & onclick
+    - use anchor tag with href
+        - `<a href="#internal" > I'm a link </a>`
+    - use button
+        - `<button class='link' onclick="doSomething()"> Do something! </button>`
+    - use alt text in img even when in a link
+        - `<a href="/">`
+        - `<img alt="Udacity" src="UdacityLogo.svg"></img>`
+        - `</a>`
+    - no 'learn more' but 'learn about ${subject}'
+- Landmarks
+    - `<header> <nav> <main> <section> <article> <aside> <footer>`
+     ![Landmarks](Google_dev/Landmarks.png)
+     ![LandmarksCss](Google_dev/LandmarksCss.png)
+
+![Sumup](Google_dev/Semantics.png)
+
 ### ARIA
+[*Accessible Rich Internet Application*](https://www.w3.org/TR/wai-aria/)
+- No ARIA is better than Bad ARIA
+    - Functionally, **ARIA roles, states, and properties** are analogous to a CSS for assistive technologies. For screen reader users, ARIA controls the rendering of their non-visual experience. Incorrect ARIA misrepresents visual experiences, with potentially devastating effects on their corresponding non-visual experiences.
+- Why aria?
+    - add non-native elements to the accessibility tree
+        ![AriaTree](Google_dev/AriaTree.png)
+    - modify accessibility tree but need to code the right behavior, focus, and keyboard event
+    - Figure illustrates the relationship between user agents (e.g., browsers), accessibility APIs, and assistive technologies. It describes the "contract" provided by the user agent to assistive technologies, which includes typical accessibility information found in the accessibility API for many of our accessible platforms for GUIs (role, state, selection, event notification, relationship information, and descriptions). The DOM, usually HTML, acts as the data model and view in a typical model-view-controller relationship, and JavaScript acts as the controller by manipulating the style and content of the displayed data. The user agent conveys relevant information to the operating system's accessibility API, which can be used by any assistive technologies, such as screen readers.
+        - ![A11yApi](Google_dev/accessibleelement.png)
+- [Roleplaying](https://www.w3.org/TR/wai-aria-practices-1.1/)
+    - add Role to dom elements
+        - Role: Main indicator of type. This semantic association allows tools to present and support interaction with the object in a manner that is consistent with user expectations about other objects of that type.
+        - button, cell, checkbox, columnheader, gridcell, heading, link, menuitem, menuitemcheckbox, menuitemradio, option, radio, row, rowgroup, rowheader, switch, tab, tooltip, tree, treeitem
+
+
 ### Style
+
+[Table of contents](#table-of-contents)
 
 ---
 ## Offline First
@@ -256,6 +379,8 @@
 ### Service Worker
 ### IndexedDB & Caching
 
+[Table of contents](#table-of-contents)
+
 ---
 ## ES 6
 ### Syntax
@@ -263,9 +388,5 @@
 ### Built-ins
 ### Pro Dev-fu
 
----
-## Extra
+[Table of contents](#table-of-contents)
 
-### Git
-
-### GitHub
