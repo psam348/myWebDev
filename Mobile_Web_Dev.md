@@ -11,7 +11,7 @@ MWS
     - [Project Restaurant Stage 1 ](#project-restaurant-stage-1)
 5. [Asynchronous​ ​JavaScript​ ​Requests](#asynchronous​-javaScript​-requests)
 6. [ES 6](#es-6)
-7. 
+7. [Web Tooling and automation](#web-tooling-and-automation)
 8. 
 9. 
 10. 
@@ -781,13 +781,16 @@ Asynchronous JavaScript And XML. but with JSON also...
 
 ---
 ## Web Tooling and automation
-### WTA Introducion
+### WTA Introduction
 ### Productive Editing
 ### Powerfull Builds
 ### Expressive Live Editing
 ### How to Prevent Disaster
 ### Awesome Optimizations
 ### WTA Conclusion
+
+[Table of contents](#table-of-contents)
+
 ---
 ## Tips and Tricks
 ### Devtools
