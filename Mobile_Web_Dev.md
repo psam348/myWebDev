@@ -3,7 +3,7 @@ see [Udacity MWS-nd](https://www.udacity.com/course/mobile-web-specialist-nanode
 
 
 ### Table of Contents
-MWS
+Mobile Web Specialist
 1. [Responsive Web Design](#responsive-web-design)
 2. [Responsive Images](#responsive-images)
 3. [Accessibility](#accessibility)
